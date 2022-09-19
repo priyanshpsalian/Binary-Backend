@@ -65,5 +65,5 @@ employeescheema.pre("save", async function (next) {
   }
   next();
 });
-const Register = new mongoose.model("Register", employeescheema);
+const Register = new mongoose.model("AdminRegister", employeescheema);
 module.exports = Register;

@@ -37,6 +37,53 @@ const employeescheema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  interests: {
+    type: String,
+    required: true,
+  },
+  occupation: {
+    type: String,
+    required: true,
+  },
+  community: {
+    type: String,
+    required: false,
+  },
+  location: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  img: {
+    type: String,
+    required: true,
+  },
+  events: [
+    {
+      name: String,
+      description: String,
+      date: Date,
+      speaker: String,
+      img: String,
+      mode: String,
+      community_name: String,
+    },
+  ],
   tokens: [
     {
       token: {

@@ -8,19 +8,12 @@ const event_data = require("./src/models/event");
 router.use(express.json());
 router.use(cors());
 const res = require("express/lib/response");
-router.get("/search/:location/:tags/:", async (req, res) => {
-  try {
-    let result = await search_group.find({
-      $or: [
-        { name: { $regex: req.params.key } },
-        { company: { $regex: req.params.key } },
-        { category: { $regex: req.params.key } },
-      ],
-    });
-    res.send(result);
-    // console.log(`${email} and ${password} and ${useremail._id}`);
-  } catch (erroe) {
-    res.status(400).send("invalid Email");
+router.get("/event/:name", async (req, res) => {
+  let id = await event_data.findOne({ eventname: req.params.name });
+  if (id) {
+    res.send(id);
+  } else {
+    res.send("No records found");
   }
 });
 router.post("/EventRegister", async (req, res) => {
@@ -64,13 +57,13 @@ router.post("/EventRegister", async (req, res) => {
     res.send("error");
   }
 });
-router.get("/event", async (req, resp) => {
-  let products = await add_product.find();
+// router.get("/event", async (req, resp) => {
+//   let products = await add_product.find({ eventname: key });
 
-  if (products.length > 0) {
-    resp.send(products);
-  } else {
-    resp.send({ result: "No Products found" });
-  }
-});
+//   if (products.length > 0) {
+//     resp.send(products);
+//   } else {
+//     resp.send({ result: "No Products found" });
+//   }
+// });
 module.exports = router;

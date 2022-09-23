@@ -50,6 +50,17 @@ router.post("/UserRegister", async (req, res) => {
 
       password: req.body.password,
       confirmpassword: req.body.reEnterPassword,
+      interests: req.body.interests,
+      // lastname: req.body.lastname,
+      occupation: req.body.occupation,
+      location: req.body.address,
+      city: req.body.city,
+      state: req.body.state,
+
+      hobby: req.body.hobby,
+      country: req.body.country,
+      description: req.body.description,
+      img: req.body.img,
     });
 
     const token = await registerUser.generateAuthToken();

@@ -39,39 +39,31 @@ const employeescheema = new mongoose.Schema({
   },
   interests: {
     type: String,
-    
   },
   occupation: {
     type: String,
-    
   },
-  community: {
-    type: String,
-    required: false,
-  },
+  community: [Array],
   location: {
     type: String,
-    
   },
   city: {
     type: String,
-    
   },
   state: {
     type: String,
-    
   },
   country: {
     type: String,
-    
   },
   description: {
     type: String,
-    
   },
   img: {
     type: String,
-    
+  },
+  hobby: {
+    type: String,
   },
   events: [
     {

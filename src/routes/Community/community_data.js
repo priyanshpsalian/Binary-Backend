@@ -23,6 +23,14 @@ router.get("/search/:location/:tags/:", async (req, res) => {
     res.status(400).send("invalid Email");
   }
 });
+router.get("/community/:name", async (req, res) => {
+  let id = await community_data.findOne({ name: req.params.name });
+  if (id) {
+    res.send(id);
+  } else {
+    res.send("No records found");
+  }
+});
 router.post("/CommunityRegister", async (req, res) => {
   try {
     const registerUser = new community_data({

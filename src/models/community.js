@@ -9,7 +9,10 @@ const book = new mongoose.Schema({
     type: String,
     required: true,
   },
-
+  description: {
+    type: String,
+    required: true,
+  },
   tags: {
     type: String,
     required: true,
@@ -18,10 +21,10 @@ const book = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  phone: {
-    type: Number,
-    required: true,
-  },
+  // phone: {
+  //   type: Number,
+  //   required: true,
+  // },
   location: {
     type: String,
   },
@@ -45,6 +48,17 @@ const book = new mongoose.Schema({
   events: [
     {
       name: String,
+      description: String,
+      date: Date,
+      speaker: String,
+      img: String,
+      mode: String,
+      community_name: String,
+    },
+  ],
+  chats: [
+    {
+      sent_by: String,
       description: String,
       date: Date,
       speaker: String,

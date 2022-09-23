@@ -4,7 +4,7 @@ require("../../db/conn");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-const community_data = require("./src/models/community");
+const community_data = require("../src/models/community");
 router.use(express.json());
 router.use(cors());
 const res = require("express/lib/response");

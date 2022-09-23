@@ -30,11 +30,11 @@ router.post("/UserLogin", async (req, res) => {
       delete useremail.confirmpassword;
       res.status(201).send(useremail);
     } else {
-      res.send("password not matching");
+      res.status(401).send("password not matching");
     }
     // console.log(`${email} and ${password} and ${useremail._id}`);
   } catch (erroe) {
-    res.status(400).send("invalid Email");
+    res.status(406).send("invalid Email");
   }
 });
 

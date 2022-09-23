@@ -7,9 +7,10 @@ const cors = require("cors");
 const event_data = require("../../models/event");
 router.use(express.json());
 router.use(cors());
+// const auth = require("./src/middleware/user_auth");
 const res = require("express/lib/response");
-router.get("/event/:name", async (req, res) => {
-  let id = await event_data.findOne({ eventname: req.params.name });
+router.get("/event/:id", async (req, res) => {
+  let id = await event_data.findOne({ name: req.params.id });
   if (id) {
     res.send(id);
   } else {
@@ -67,6 +68,7 @@ router.post("/EventRegister", async (req, res) => {
     res.send("error");
   }
 });
+
 // router.get("/event", async (req, resp) => {
 //   let products = await add_product.find({ eventname: key });
 

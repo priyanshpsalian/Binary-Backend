@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const register_user = require("../../models/register_user");
 router.use(express.json());
+const auth = require("../../../src/middleware/user_auth");
 router.use(cors());
 const res = require("express/lib/response");
 router.post("/UserLogin", async (req, res) => {
@@ -78,5 +79,38 @@ router.post("/UserRegister", async (req, res) => {
     res.send("error");
   }
 });
+// router.get("/data", auth, async (req, res) => {
+  
+//   console.log(req.cookies.jwt);
+  
+//   const token = req.cookies.jwt;
+//   console.log(req.cookies.jwt);
+//   console.log(token);
+//   const verifyUser = jwt.verify(token, "mmmmmmmmmmmmmmmmmmmmmmm");
+//   console.log(verifyUser);
 
+//       const user = await register_user.findOne({ _id: `632d8a5217a778b82b3bdc9b` });
+
+//   console.log(user);
+  
+//   console.log(user);
+//   res.send(user);
+  
+// });
+router.get("/data/:key",  async (req, res) => {
+  // console.log(req.cookies.jwt);
+
+  // const token = req.cookies.jwt;
+  // console.log(req.cookies.jwt);
+  // console.log(token);
+  // const verifyUser = jwt.verify(token, "mmmmmmmmmmmmmmmmmmmmmmm");
+  // console.log(verifyUser);
+
+  const user = await register_user.findOne({ _id: req.params.key });
+
+  console.log(user);
+
+  // console.log(user);
+  res.send(user);
+});
 module.exports=router;

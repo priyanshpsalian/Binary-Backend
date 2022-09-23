@@ -9,13 +9,13 @@ router.use(express.json());
 const register_user = require("../../models/register_user");
 router.use(cors());
 const res = require("express/lib/response");
-router.get("/search/:location/:tags/:", async (req, res) => {
+router.get("/communitysearch/:tags", async (req, res) => {
   try {
-    let result = await search_group.find({
+    let result = await community_data.find({
       $or: [
-        { name: { $regex: req.params.key } },
-        { company: { $regex: req.params.key } },
-        { category: { $regex: req.params.key } },
+        { name: { $regex: req.params.tags } },
+        { company: { $regex: req.params.tags } },
+        { category: { $regex: req.params.tags } },
       ],
     });
     res.send(result);

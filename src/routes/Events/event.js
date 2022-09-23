@@ -4,7 +4,7 @@ require("../../db/conn");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-const event_data = require("./src/models/event");
+const event_data = require("../../models/event");
 router.use(express.json());
 router.use(cors());
 const res = require("express/lib/response");
@@ -53,6 +53,16 @@ router.post("/EventRegister", async (req, res) => {
     // delete registered.confirmpassword;
 
     res.status(201).send(registerUser);
+    await register_user.findOneAndUpdate(
+      {
+        firstname: `${req.body.user_name}`,
+      },
+      {
+        $addToSet: {
+          event: req.body,
+        },
+      }
+    );
   } catch (e) {
     res.send("error");
   }

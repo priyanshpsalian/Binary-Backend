@@ -60,11 +60,7 @@ const book = new mongoose.Schema({
     {
       sent_by: String,
       description: String,
-      date: Date,
-      speaker: String,
-      img: String,
-      mode: String,
-      community_name: String,
+      
     },
   ],
 });

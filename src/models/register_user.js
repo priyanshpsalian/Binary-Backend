@@ -66,15 +66,7 @@ const employeescheema = new mongoose.Schema({
     type: String,
   },
   events: [
-    {
-      name: String,
-      description: String,
-      date: Date,
-      speaker: String,
-      img: String,
-      mode: String,
-      community_name: String,
-    },
+    Array
   ],
   tokens: [
     {

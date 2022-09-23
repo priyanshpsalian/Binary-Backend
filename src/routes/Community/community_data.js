@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const community_data = require("../../models/community");
 router.use(express.json());
+const register_user = require("../../models/register_user");
 router.use(cors());
 const res = require("express/lib/response");
 router.get("/search/:location/:tags/:", async (req, res) => {
@@ -34,19 +35,21 @@ router.get("/community/:name", async (req, res) => {
 router.post("/CommunityRegister", async (req, res) => {
   try {
     const registerUser = new community_data({
-      name: req.body.name,
-      organiser: req.body.organiser_name,
+      // user_name: req.body.user_name,
+      name: req.body.organizationname,
+      organiser: req.body.organiser,
+      description: req.body.description,
       tags: req.body.tags,
-      date: req.body.date,
-      phone: req.body.phone,
+      date: req.body.datetime,
+      // phone: req.body.phone,
       location: req.body.location,
       city: req.body.city,
       state: req.body.state,
       country: req.body.country,
-      img: req.body.img,
-      img: req.body.img,
-      likes: req.body.likes,
-      
+      img: req.body.image,
+      // img: req.body.img,
+      // likes: req.body.likes,
+
       // password: req.body.password,
       // confirmpassword: req.body.reEnterPassword,
     });
@@ -61,12 +64,40 @@ router.post("/CommunityRegister", async (req, res) => {
     // registered.toObject();
     // delete registered.password;
     // delete registered.confirmpassword;
+    await register_user.findOneAndUpdate(
+      {
+        firstname: `${req.body.user_name}`,
+      },
+      {
+        $addToSet: {
+          community: req.body.name,
+        },
+      }
+    );
 
     res.status(201).send(registerUser);
   } catch (e) {
     res.send("error");
   }
 });
+router.post("/CommunityChat/:name", async (req, res) => {
+  try {
+    
+    await community_data.findOneAndUpdate(
+      {
+        firstname: `${req.params.name}`,
+      },
+      {
+        $addToSet: {
+          chat: req.body,
+        },
+      }
+    );
 
+    res.status(201).send(registerUser);
+  } catch (e) {
+    res.send("error");
+  }
+});
 
 module.exports = router;

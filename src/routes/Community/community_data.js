@@ -24,10 +24,12 @@ router.get("/communitysearch/:tags", async (req, res) => {
     res.status(400).send("invalid Email");
   }
 });
-router.get("/community/:name", async (req, res) => {
-	let id = await community_data.findOne({ name: req.params.name });
-	if (id) {
-		res.send(id);
+router.get("/community/:id", async (req, res) => {
+	let result = await community_data.find({ _id: `632d517f57d89f7eb74ea4c0` });
+  // let result = await community_data.find({ name: { $regex: req.params.id } });
+	if (result) {
+    console.log(result);
+		res.send(result[0]);
 	} else {
 		res.send("No records found");
 	}
@@ -92,6 +94,22 @@ router.post("/CommunityRegister", async (req, res) => {
 		res.send("error");
 	}
 });
+
+// router.post("/CommunityInfo", async (req, res) => {
+//   // console.log("request");
+//   try {
+    
+//     console.log(req.body.community);
+    
+
+    
+//     console.log("bef res");
+//     res.status(201).send(registerUser);
+//     console.log("after resp");
+//   } catch (e) {
+//     res.send("error");
+//   }
+// });
 router.post("/CommunityChat/:name", async (req, res) => {
 	try {
 		await community_data.findOneAndUpdate(

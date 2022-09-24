@@ -11,6 +11,7 @@ const res = require("express/lib/response");
 router.post("/UserLogin", async (req, res) => {
   try {
     // email1 = req.body.email;
+    console.log("Login");
     const email = req.body.email;
     const password = req.body.password;
     let useremail = await register_user.findOne({ email: email });

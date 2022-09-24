@@ -34,6 +34,15 @@ router.get("/community/:id", async (req, res) => {
 		res.send("No records found");
 	}
 });
+
+router.get("/community", async (req, res) => {
+	let id = await community_data.find();
+	if (id) {
+		res.send(id);
+	} else {
+		res.send("No records found");
+	}
+});
 router.post("/CommunityRegister", async (req, res) => {
 	console.log("request");
 	try {

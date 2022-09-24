@@ -17,6 +17,14 @@ router.get("/event/:id", async (req, res) => {
     res.send("No records found");
   }
 });
+router.get("/event", async (req, res) => {
+	let id = await event_data.find();
+	if (id) {
+		res.send(id);
+	} else {
+		res.send("No records found");
+	}
+});
 router.post("/EventRegister", async (req, res) => {
 	try {
 		const registerUser = new event_data({
